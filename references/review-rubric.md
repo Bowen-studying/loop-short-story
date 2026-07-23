@@ -1,78 +1,93 @@
-# Review and revision rubric
+# 审稿与修订标准（Schema v2）
 
-Review in two passes. Complete deterministic checks first; then judge semantic quality. Never let a score cancel a blocker.
+分两轮审查：先完成确定性校验，再判断语义质量。高分永远不能抵消阻断项。
 
-## Deterministic gates
+## 确定性门槛
 
-Require all of the following:
+必须同时满足以下条件：
 
-- 1000–2000 non-whitespace body characters, excluding the Markdown title.
-- Approved specification and outline fingerprints still match current files.
-- One to seven scenes using all five phases in order.
-- Exactly three clue-ledger entries with valid plant and payoff scenes.
-- Non-empty knowledge, action, and cost deltas for every scene.
-- No more than 15% of sentence characters are exact repeated sentences after first occurrence.
-- No more than three recorded revisions.
+- 正文去除空白后为1000–3000字，不包含 Markdown 标题。
+- 当前完整稿具有未过期的 `draft-vN.manifest.json`，并记录 `single_agent` 写作模式、唯一正文 Agent、来源版本、单一修订层级和修订影响；全部历史稿及清单必须完整、连续且指纹未变。
+- 已批准的规格和架构指纹仍与 `story_spec.yaml`、`loop_map.json`、`beat_sheet.json` 一致。
+- 4–8场使用 `phases` 数组；展开后的阶段索引不得倒退，并完整包含 `hook`、`pressure`、`escalation`、`decisive_payoff`、`aftertaste`。一场可以合并相邻阶段，同一阶段可以延展到相邻场景。
+- 2–4条故事 Loop 具有唯一 ID、有效场景引用，并且先铺设、后兑现。
+- 核心兑现和每条故事 Loop 都记录最小结论、最强替代解释、决定性支持和允许保留的不确定性；支持不得晚于兑现。
+- 连续性台账包含1–12条有效事实，状态变化按场景顺序记录且被相关场景引用。
+- 核心钩子具体；早期证明、决定性兑现和超额兑现引用的场景顺序不得倒退，且内容具体。
+- 每场包含目标、阻碍、选择、后果、承诺动作，并至少改变知识、关系或风险中的一项。
+- 除最后一场外，每场都提供 `next_pull`；结尾可以完整关闭，不必强行留下余钩。
+- 每个场景使用的故事 Loop ID 都存在，每条故事 Loop 都出现在自己的兑现场景。
+- 精确重复句在首次出现之后所占的句子字符比例不超过15%。
+- 修订次数不超过三轮，每个修订版本只记录一个修订层级；修订影响不得超出该层级，非结构修订不得改变结构。
+- 因果、转化、人物、文字四份角色报告和聚合报告全部存在，职责字段不重叠，角色上下文声明正确，每个评分维度都有当前稿证据，初稿、规格、架构和报告指纹都与当前快照一致。
 
-These checks establish shape, not literary quality. Treat phrase lists, sentence length, paragraph length, “AI-like” constructions, and dialogue ratios as warnings unless the author explicitly promotes them to constraints.
+这些门槛只验证结构形状，不直接等同于文学质量。词语清单、句长、段长、所谓“AI味”结构、对话比例、固定钩子间隔和强制反转只能作为警告；除非作者明确把它们写入风格约束，否则不得提升为硬性错误。
 
-## Semantic dimensions
+## 九项语义评分
 
-Score each dimension from 0 to 5:
+每项使用0–5分：
 
-| Dimension | A score of 4–5 means |
+| 维度 | 4–5分的标准 |
 | --- | --- |
-| Opening effectiveness | The opening gives character, pressure, and a loop-relevant anomaly without background dumping. |
-| Causal logic | Each inference and choice follows available evidence; the loop rule and exception stay consistent. |
-| Information progression | Each repetition changes knowledge, action, and cost rather than replaying content. |
-| Clue fairness | The twist relies on visible evidence that allowed a plausible earlier misreading. |
-| Character choice | Desire and flaw shape decisions; escape requires a meaningful cost or reversal. |
-| Prose naturalness | Details are specific, transitions unobtrusive, repetitions compressed, and voice non-generic. |
-| Ending resonance | The false ending works, the final change expands meaning, and the character choice still matters. |
+| 选题差异 | 设定包含具体、可记忆的矛盾，不是给通用主题替换人物姓名。 |
+| 开篇转化 | 开篇迅速建立人物、压力和明确的继续阅读理由，同时避免背景堆积。 |
+| 因果逻辑 | 推断、选择和后果都来自已有信息，跨场时间、次数、位置和身份一致，关键结果不依赖巧合。 |
+| 承诺兑现 | 早期证明支持开篇承诺，高潮真正兑现承诺，超额兑现深化而不是替换结果。 |
+| 信息递进 | 每条故事 Loop 都经过证据或压力、行动、代价并干净闭合，决定性支持能排除更强替代解释，场景不只是拖延回答。 |
+| 主角能动性 | 主角欲望和缺陷塑造选择，且一个具有后果的关键选择造成结局。 |
+| 情绪冲击 | 压力通过有意义的代价升级，人物结算赢得而不是索取目标情绪。 |
+| 文字自然度 | 细节具体、转场与空间关系自然、解释压缩、声音适配故事；专业术语和事实性表达可信。 |
+| 结尾余味 | 结尾完成核心冲突和主题，并留下分寸合适的情绪或解释余韵。 |
 
-Pass only when:
+只有同时满足以下条件才可通过：
 
-- total score is at least 29/35;
-- causal logic and clue fairness are at least 4;
-- every other dimension is at least 3;
-- every reader test is `true`;
-- `blockers` is empty; and
-- deterministic gates pass.
+- 总分至少40/45；
+- 九个维度每项都不低于4分；
+- 十项读者测试全部为 `true`；
+- `blockers` 为空；
+- 所有确定性门槛通过。
 
-## Reader tests
+这意味着“没有明显短板”仍不足以定稿：在所有维度达到良好线的基础上，至少四项需要达到5分，才能达到40分。
 
-Perform these as falsification attempts:
+## 十项读者测试
 
-1. Remove the final twist. Does the apparent escape still form a credible ending?
-2. Restore the twist. Do at least two earlier clues gain a second, text-supported meaning?
-3. Trace each changed action backward. Is it caused by knowledge acquired in an earlier repetition?
-4. Read only the first 40%. Is the true cause still uncertain rather than explicitly disclosed?
-5. List everything needed for the final explanation. Did every item appear before the payoff?
+把每项都当作反证测试；证据含混时必须记录为 `false`：
 
-Record `false` whenever evidence is mixed; explain it in a blocker or warning.
+1. 读完开篇后，首次阅读者能否用一句话说出继续阅读的中心理由？
+2. 早期场景是否证明开篇承诺代表实际故事，而不是装饰性诱饵？
+3. 每个决定性行动是否都能追溯到目标、阻碍或此前后果，而不是情节方便？
+4. 全文的时间、次数、地点、身份、关系、物件和规则是否与连续性台账一致？
+5. 所有2–4个问题或期待是否都获得回答、重估或兑现？
+6. 不读取作者预设答案时，正文是否提供足以排除最强替代解释的决定性支持？
+7. 如果主角没有作出具有后果的选择，结局是否会实质改变？答案必须是会。
+8. 决定性兑现使用的每个关键元素，是否都在使用前出现或变得可以推断？
+9. 结尾是否通过事件和后果交付目标情绪，而不是依赖解释性说教？
+10. 专业术语、事实陈述、空间关系和程序性细节是否可信且不自相矛盾？
 
-## Route the next action
+按照 [orchestration.md](orchestration.md) 的职责分配，把结果写入四份角色报告：`opening_makes_promise_clear`、`early_proof_supports_promise`、`actions_follow_causes`、`continuity_is_consistent`、`story_loops_close`、`closure_excludes_stronger_alternative`、`protagonist_choice_drives_result`、`payoff_uses_prepared_elements`、`ending_delivers_target_emotion`、`domain_language_is_credible`。
 
-Choose the earliest failing layer in this order:
+## 路由下一步动作
 
-1. `structure`: opening architecture, causal contradiction, information sequence, loop rule, or action not caused by knowledge.
-2. `clue`: clue visibility, misreading, payoff, final reinterpretation, or unfair late information.
-3. `character`: desire, flaw, motivation, choice, cost, or emotional consequence.
-4. `prose`: compression, specificity, rhythm, transition, voice, or local opening delivery.
+按照最早失败层级选择唯一路由：
 
-If any structure blocker exists, do not patch the manuscript. Set the state to `outline_revision_required`, propose a revised BeatSheet, and obtain renewed outline approval.
+1. `structure`：阶段架构、因果矛盾、连续性冲突、缺少状态变化、信息顺序混乱、故事 Loop 未闭合，或最强替代解释未被排除。
+2. `promise`：开篇通用或误导、早期证明不足、发展偏离承诺、兑现不足，或超额兑现抹掉结果。
+3. `character`：欲望或缺陷不清晰、主角被动、关键选择缺乏铺垫、缺少代价或情绪结算薄弱。
+4. `prose`：局部开篇表达、压缩、具体性、节奏、转场或声音问题。
 
-For all other layers, revise only passages evidenced by that layer. Preserve unaffected plot facts, clue meanings, character decisions, and voice. One draft version must record exactly one revision layer.
+如果结构阻断项要求修改 `loop_map.json` 或 `beat_sheet.json`，立即停止正文编辑，修改并校验架构，然后重新取得架构批准。其他层级只修改该层证据指向的段落，并保留不受影响的情节事实、Loop 解决方式、人物选择和声音。一个初稿版本只能记录一个层级，并必须提交修订影响清单；如果实际影响跨层，拒绝导入该稿并返回更早层级。
 
-## Stop responsibly
+当选题无法在1000–3000字内形成清晰、差异化的承诺时，添加 `layer: premise` 的阻断项。校验器返回 `premise` 路由，记录审稿后停止当前正文周期。保留最佳稿，并在作者决定后返回选题 Loop。不得把选题失败伪装成文字问题。
 
-After three revisions, stop regardless of score. Preserve the best draft and write `stopped_report.json` containing:
+## 负责任地停止
 
-- the last deterministic result;
-- the last semantic scores;
-- unresolved blockers with evidence;
-- layers already attempted; and
-- the smallest author decision that could unblock a new cycle.
+三轮修订后无论分数如何都必须停止。保留最佳稿，并生成 `stopped_report.json`，其中包含：
 
-Do not lower thresholds, merge several layers into one emergency rewrite, or claim completion because the revision budget ended.
+- 最后一次确定性校验结果；
+- 最后一次语义评分；
+- 尚未解决的阻断项及证据；
+- 已经尝试的修订层级；
+- 最佳稿件路径；
+- 启动新周期所需的最小作者决策。
 
+不得降低门槛、在紧急版本中混合多个修订层级，或因为修订预算用完就声称已经完成。

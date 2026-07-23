@@ -1,71 +1,141 @@
-# Loop-narrative craft
+# 多 Loop 网络短篇创作方法
 
-## Design the two loops
+把 Loop 理解为受控反馈循环，而不是必须出现在故事里的时间循环装置。故事可以是悬疑、情感、科幻、现实、喜剧或其他题材；不要求重复时间、结尾反转或环形结构。
 
-Treat the internal narrative loop and external production loop separately.
+## 目录
 
-- Internal: repeat a recognizable situation three times while escalating information and moral cost.
-- External: draft, review, and repair one failure layer at a time for no more than three revisions.
+- [使用六个 Loop](#使用六个-loop)
+- [组织五个阶段](#组织五个阶段)
+- [保持短篇推进力](#保持短篇推进力)
+- [按功能选择结尾](#按功能选择结尾)
 
-Do not confuse repetition with progression. A repeated event earns space only when it changes what the protagonist knows, does, or risks.
+## 使用六个 Loop
 
-## Allocate the story
+### 1. 选题 Loop
 
-Use these proportions as planning targets, not paragraph quotas:
+把抽象主题转化为能够被看见和验证的短篇设定：
 
-| Phase | Share | Function |
+```text
+主题 → 具体矛盾 → 压力中的主角 → 差异化承诺 → 可完成性检查
+```
+
+从钩子清晰度、差异性、情绪压力、画面具体性，以及能否在1000–3000字内完整兑现五个方面判断选题。承诺仍然空泛时，重新生成候选方案。进入架构阶段前，把入选方案锁定到 `story_spec.yaml`。
+
+**验收标准：** 三个隔离角色各交付一个字段完整且不重复的候选；协调器完成五项0–5分评分并记录推荐理由；作者选定方案；由该方案生成的 StorySpec 通过确定性校验并取得第一次人工批准。缺少任一候选、评分或批准即不通过。
+
+### 2. 阅读承诺 Loop
+
+让一条核心承诺贯穿全文：
+
+```text
+开篇钩子 → 早期证明 → 决定性兑现 → 超额兑现
+```
+
+- 通过行动、冲突、画面或具体问题让钩子可感知，不要只依赖解释。
+- 尽早证明开篇代表读者实际会读到的故事，而不是装饰性诱饵。
+- 在 `decisive_payoff` 阶段兑现中心期待，不得临时换成另一场冲突。
+- 使用额外的情绪、主题或解释价值完成超额兑现，不得为了惊讶而抹掉已经完成的兑现。
+- 把诱人但偏离承诺的发展方向记录到 `forbidden_drift`。
+- 写出核心兑现必须成立的最小结论、最强替代解释、排除替代解释的决定性支持，以及允许开放保留的部分。不能把作者预设答案当作正文已经证明的事实。
+
+**验收标准：** `hook` 非空；`proof`、`payoff`、`overdelivery` 都有有效场景引用且顺序不倒退；`payoff_test` 字段完整且决定性支持不晚于兑现；`forbidden_drift` 至少一项；`opening_conversion` 与 `promise_payoff` 均不低于4分；`opening_makes_promise_clear`、`early_proof_supports_promise`、`payoff_uses_prepared_elements`、`closure_excludes_stronger_alternative` 全部为 `true`。任一条件失败即进入 `promise` 或更早的 `structure` 修订。
+
+### 3. 场景因果 Loop
+
+用以下结构建立每一场：
+
+```text
+目标 → 阻碍 → 选择 → 后果 → 状态改变
+```
+
+主角必须作出选择；单纯观察不能充当场景引擎。后果必须改变知识、关系或风险，并让下一场变得必要。在同一场内完成更小的阅读循环：
+
+```text
+承诺 → 施压 → 兑现 → 余钩
+```
+
+`aftertaste` 场景可以结束于完整结算、适度模糊或情绪余韵，不必制造用于点击下一章的悬崖钩子。
+
+用 `continuity_ledger` 跟踪跨场景最容易冲突的时间、次数、地点、身份、关系、物件、规则和知识状态。每次变化都要绑定具体场景和原因；没有记录的变化不能在正文中临时发生。
+
+**验收标准：** 全文包含4–8场并完整覆盖五阶段；每场都有非空的目标、阻碍、选择、后果和承诺动作；每场至少改变知识、关系或风险之一；除最后一场外都有 `next_pull`；连续性台账引用与状态顺序有效；`causal_logic` 不低于4分，`actions_follow_causes` 与 `continuity_is_consistent` 均为 `true`。任一场缺少因果环节、有效状态变化或存在跨场冲突即不通过。
+
+### 4. 信息递进 Loop
+
+使用2–4条故事 Loop。每条 Loop 从问题或期待开始，以回答、重估或兑现结束：
+
+```text
+问题或期待 → 压力 → 主角行动 → 代价 → 解决
+```
+
+递进的基本单位是理解或可能性的改变，而不是强制反转。悬疑故事可以重新解释证据；情感故事可以重新定义关系；现实故事可以重估价值判断；喜剧故事可以升级并释放期待。除非行动、代价或可能的解决方式已经改变，否则不得重复同一种压力。
+
+为每条 Loop 填写闭合测试：最小结论、最强替代解释、决定性支持和允许留白。对于揭示类故事，支持必须真正排除正常解释；对于选择类故事，支持必须证明人物仍有其他选项；对于价值重估或开放结尾，必须区分已经关闭的中心问题与有意保留的不确定性。
+
+**验收标准：** 存在2–4条 ID 唯一的故事 Loop；每条 Loop 的铺设场和兑现场都存在且铺设早于兑现；关联场景正确引用 Loop ID；闭合测试完整且支持不晚于兑现；`information_progression` 不低于4分；`story_loops_close`、`payoff_uses_prepared_elements`、`closure_excludes_stronger_alternative` 均为 `true`。存在未闭合、倒序、无法排除更强解释或依赖结尾新设定的 Loop 即不通过。
+
+### 5. 人物情绪 Loop
+
+把外部结果连接到人物的内部模式：
+
+```text
+欲望 + 缺陷 → 惯性选择 → 代价升级 → 反缺陷选择 → 情绪结算
+```
+
+根据主题，关键选择可以克服、揭露、接纳或有意识地保留缺陷。核心要求是：主角具有后果的选择必须造成结局。迟到的救援者、未经解释的机制或被动揭晓不能替代人物能动性。通过事件后果交付目标情绪，不要在结尾附加说教。
+
+**验收标准：** 人物 Loop 的 `desire` 和 `flaw` 与 StorySpec 完全一致；惯性选择造成可见的升级代价；关键选择直接造成决定性结果；`protagonist_agency` 与 `emotional_impact` 均不低于4分；`protagonist_choice_drives_result` 与 `ending_delivers_target_emotion` 均为 `true`。删除主角选择后结局仍不改变即不通过。
+
+### 6. 外部审改 Loop
+
+先完成完整初稿，再进行判断。严格分离诊断与修复：
+
+```text
+完整初稿 → 确定性校验 → 语义审稿 → 单层修订 → 重新审稿
+```
+
+每个版本只路由到一个层级，顺序固定为 `structure`、`promise`、`character`、`prose`。保留不受影响的决策和段落。最多修订三轮。如果选题本身无法形成清晰、差异化且能在短篇内兑现的承诺，停止正文周期并返回选题 Loop，不得继续润色表面症状。
+
+Agent 的角色数量、单一正文作者约束和执行拓扑由 [orchestration.md](orchestration.md) 规定。无论使用多 Agent 还是降级模式，都必须生成相同的项目产物，并遵守相同的批准点和修订边界。
+
+先让因果角色在不知道预设结局答案的情况下盲读正文，写出它实际推断到的结果、最强替代解释和决定性支持。其他角色只读取职责需要的承诺、人物或风格边界。每轮所有角色都必须重新引用当前稿证据，不能沿用上一版结论。涉及专业、事实或程序性表达时，文字角色同时检查可信度。
+
+**验收标准：** 当前完整稿通过字数、重复率、批准指纹和全部历史稿不可变校验；四份职责互斥的角色报告与聚合报告全部存在、上下文声明正确、每维当前稿证据完整、指纹一致且未过期；九项评分总分至少40且每项不低于4；十项读者测试全部为 `true`；无阻断项；当前版本只修订一个层级、具有匹配的影响清单且累计不超过三轮。缺报告、报告越权、上下文泄露、证据沿用、报告过期、历史稿被覆盖或质量门槛失败都不得定稿。
+
+`validate review` 必须返回 `loop_acceptance`，分别列出 `topic`、`reader_promise`、`scene_causality`、`information_progression`、`character_emotion`、`external_review` 的布尔结果。只有六项全部为 `true` 才能定稿。
+
+## 组织五个阶段
+
+以下比例是规划目标，不是段落配额：
+
+| 阶段 | 目标比例 | 作用 |
 | --- | ---: | --- |
-| Anchor | 10% | Establish a concrete action, desire, place, and repeatable sensory marker. |
-| Anomaly | 20% | Let normal reasoning fail; surface the first hard discrepancy. |
-| Rule | 25% | Let remembered knowledge change action; confirm the rule and strengthen a plausible misreading. |
-| Truth | 30% | Let the protagonist test the rule; reinterpret old clues and connect the loop to desire or flaw. |
-| False escape + twist | 15% | Deliver a credible release, then use an already planted detail to reveal the larger loop. |
+| `hook` | 15% | 把具体主角置于即时压力中，让核心承诺清晰可感知。 |
+| `pressure` | 20% | 建立阻力、风险，以及故事能够兑现承诺的早期证明。 |
+| `escalation` | 30% | 让人物选择不断升级信息、关系和代价。 |
+| `decisive_payoff` | 25% | 通过主角具有后果的选择兑现核心承诺。 |
+| `aftertaste` | 10% | 结算情绪和主题；可以增加已有铺垫支持的第二层含义。 |
 
-Use no more than seven scenes. Combine phases into one scene when the story needs speed; never omit a phase.
+使用4–8场，并按顺序保留五个阶段。一场可以合并相邻阶段，一个阶段也可以延展到相邻场景。整份 BeatSheet 中，阶段只能前进、不能倒退，并且五个阶段都必须出现。删除所有不改变故事状态的过渡场景。
 
-## Escalate each repetition
+## 保持短篇推进力
 
-For `anomaly`, `rule`, and `truth`, answer all three questions:
+- 用压力下的具体行动开篇，只提供理解当前选择所必需的背景。
+- 根据戏剧需要安排行动、对话和压缩后的思考，不得套用固定比例。
+- 通过人物感知选择细节，让每个细节至少服务于压力、承诺、人物或兑现之一。
+- 在制造下一个必要问题的同时给出阶段性答案；单纯拖延不是悬念。
+- 压缩路程、重复争论、读者已经理解的铺垫，以及行动已经证明的解释。
+- 让作者控制风格约束，不得强制通用禁词、句长、段长、钩子间隔或结尾反转。
 
-1. What can the protagonist know now that was impossible before?
-2. What different action follows from that knowledge?
-3. What new cost makes repeating the previous solution impossible or morally worse?
+## 按功能选择结尾
 
-Make the causal chain visible: `new evidence → changed inference → changed choice → increased cost`. Avoid coincidence as the bridge between repetitions.
+根据核心承诺和主题选择结尾策略：
 
-## Build fair clues
+- **揭示**：让已有证据获得经过铺垫的新含义。
+- **选择**：通过主角的决定解决情绪冲突。
+- **价值重估**：在获得新背景后，重新判断同一段关系或事件。
+- **反讽**：让已经实现的目标暴露其代价或矛盾。
+- **释放**：把累积压力结算为释然、悲伤、温柔或笑声。
+- **开放余韵**：关闭中心冲突，同时保留一个有意义但未完全确定的影响。
 
-Give each clue four lives:
-
-1. A concrete surface form the reader can notice.
-2. A plausible first interpretation that fits the current evidence.
-3. A later observation that strains the first interpretation.
-4. A true meaning that becomes obvious in retrospect.
-
-Use at least two clues in the final reinterpretation. Let the third support character or rule consistency. Never introduce the decisive device, institution, person, or exception after the truth phase begins.
-
-## Compress repetition
-
-On later repetitions, recall the anchor in a few words and spend prose on difference. Prefer changed verbs, missing objects, altered timing, or a character making the opposite choice. Do not copy whole paragraphs to signal recurrence.
-
-Use a stable sensory marker—sound, gesture, time, object, sentence—and alter one property at the end. The change should carry evidence, not merely atmosphere.
-
-## Make the loop thematic
-
-Use the loop to pressure the protagonist's flaw. The escape must require a choice that contradicts their habitual self-protection, denial, control, or attachment. A clever mechanical solution without a character cost produces a puzzle, not a story.
-
-The theme must be demonstrable as: “Because the protagonist believed X, they repeatedly chose Y; only by choosing Z could the apparent loop end.” Avoid adding an explanatory moral after the action.
-
-## Draft natural prose
-
-- Open with the protagonist doing something specific under pressure.
-- Select details through the protagonist's perception; avoid generic inventory.
-- Alternate action, dialogue, and compressed reflection according to the scene's need.
-- Use clichés and familiar phrasing only when they reveal a character's voice; avoid them as default narration.
-- Keep style constraints author-controlled. Do not impose universal banned-word, sentence-length, paragraph-length, or dialogue-ratio rules.
-- Preserve ambiguity only where both interpretations remain evidence-based.
-
-## Land the false ending
-
-Before the last twist, provide enough calm and causal closure that the story could end there. Then repeat one planted detail with a meaningful change. The twist should expand the frame, not erase what the protagonist chose or declare that nothing happened.
-
+不得只在结尾才引入决定性人物、规则、技术或事实。惊讶可以没有；铺垫、因果和情绪完成不能缺失。

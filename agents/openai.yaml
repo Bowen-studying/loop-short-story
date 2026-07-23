@@ -1,4 +1,4 @@
 interface:
-  display_name: "Loop Short Story"
-  short_description: "Write and revise Chinese loop-narrative short fiction"
-  default_prompt: "Use $write-loop-short-story to create a 1000–2000字中文循环叙事短篇，并通过受控评审完成定稿。"
+  display_name: "多 Loop 网络短篇创作"
+  short_description: "用单一正文 Agent、连续性校验和盲审创作中文网络短篇"
+  default_prompt: "使用 $loop-short-story 创作一篇1000–3000字中文网络短篇，让单一正文 Agent 完成全文，通过多 Loop 架构、替代解释测试、连续性台账和受限上下文盲审完成定稿。"
