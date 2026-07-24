@@ -286,7 +286,7 @@ v4 在原有 10 个 reader_tests 基础上新增 3 个：
 
 ### record-draft 修订时必须带 --impact
 
-从 v2.1 起，第一次以后的 `record-draft`（即 `--layer` 非空时）**必须**附带 `--impact <json-file>`。impact JSON 需要以下字段（全部必填）：
+修订时（v2 起），第一次以后的 `record-draft`（即 `--layer` 非空时）**必须**附带 `--impact <json-file>`。impact JSON 需要以下字段（全部必填）：
 
 ```json
 {"schema_version":2,"declared_layer":"prose","source_fingerprint":"<sha256>","candidate_fingerprint":"<sha256>","affected_dimensions":["prose_naturalness"],"structural_change":false,"change_summary":"描述修改了什么","preserved_invariants":["至少一项保持不变的内容"]}
