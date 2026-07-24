@@ -140,7 +140,7 @@ S1 诊室日常 → S2 发现异常 → S3 独立推导 → S4 系统验证 → 
 `finalize` → complete。2776 字，3 轮修订。
 
 <details>
-<summary><span style="font-size:1.2em">📖 点击展开作品全文（2776 字）</span></summary>
+<summary><span style="font-size:1.2em;font-weight:bold">📖 点击展开作品全文（2776 字）</span></summary>
 
 ---
 
